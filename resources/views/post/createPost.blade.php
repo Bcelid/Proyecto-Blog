@@ -17,7 +17,6 @@
             <label for="contenido" class="block text-sm font-bold text-gray-700">Contenido:</label>
             <textarea name="contenido" id="contenido" class="trumbowyg mt-1 p-2 border rounded w-full"></textarea>
         </div>
-    
         <div class="mb-4">
             <label for="autor" class="block text-sm font-bold text-gray-700">Autor:</label>
             <input type="text" name="autor" id="autor" value="{{ Auth::user()->name }}" readonly class="mt-1 p-2 border rounded w-full">
