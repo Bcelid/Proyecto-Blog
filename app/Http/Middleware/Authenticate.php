@@ -14,6 +14,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        //definimos la ruta index para que se redirija si la autenticacion falla
         if (! $request->expectsJson()) {
             return route('index');
         }

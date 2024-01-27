@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {   //definimos la estructura de la tabla post con la relacion con la tabla users
         Schema::create('posts', function (Blueprint $table) {
             $table->id('post_id');
             $table->foreignId('users_id')->constrained('users', 'id');

@@ -68,7 +68,7 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
+    //definimos el zona horaria para las funciones
     'timezone' => 'America/Guayaquil',
 
     /*

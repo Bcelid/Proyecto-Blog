@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        //definimos la estructura de la tabla comments y sus relaciones
         Schema::create('comments', function (Blueprint $table) {
             $table->id('comments_id');
             //Se crea la relacion por post_id con la tabla post

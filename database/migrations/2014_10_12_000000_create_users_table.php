@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {   //definimos la estructura y campos de la tabla users
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
