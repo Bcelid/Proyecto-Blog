@@ -41,7 +41,7 @@
         <input type="hidden" name="post_id" value= {{$post -> post_id}}>
         <input type="hidden" name="users_id" value={{Auth::user()->id}}>
         <label class="block mb-2 text-xl text-gray-700">Comenta esta publicación</label>
-        <textarea class="w-full p-2 border rounded-md" name="contenido" rows="3" placeholder="Escribe tu comentario aquí"></textarea>
+        <textarea class="w-full p-2 border rounded-md" name="contenido" rows="3" placeholder="Escribe tu comentario aquí"required></textarea>
         <button type="submit" class="m-2 inline-flex items-center px-3 py-2 text-sm sm:text-base md:text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Enviar
             <svg class="h-5 w-5 text-white ml-2"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="10" y1="14" x2="21" y2="3" />  <path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" /></svg>
@@ -54,17 +54,14 @@
                 <span class="font-bold text-lg">{{ $coment->nombre_usuario }}:</span>
                 {{ $coment->contenido }}
             </p>
+            <p class="mb-4 text-gray-500 text-sm mt-2">
+                Publicado el {{$coment -> created_at}}
+            </p>
             <!-- Acciones para el dueño del comentario -->
             @if(Auth::user()->id == $coment->id_usuarios)
                 <div class="flex space-x-4 mt-2">
                     <!-- Formulario para editar el comentario -->
-                    <form action="" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="text" value="{{$coment->comments_id}}" hidden>
-                        <button type="submit" class="text-blue-500 hover:underline">Editar</button>
-                    </form>
-
+                    <a href = {{route('post.editcomments',$coment->comments_id)}} class="text-blue-500 hover:underline">Editar</a>
                     <!-- Formulario para eliminar el comentario -->
                     <form action="{{ route('comments.destroycomments', $coment->comments_id) }}" method="POST">
                         @csrf
@@ -74,6 +71,7 @@
                 </div>
             @endif
         </div>
+        
     @endforeach
 </div>
 @endsection

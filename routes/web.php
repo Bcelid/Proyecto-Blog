@@ -32,4 +32,6 @@ Route::controller(postController::class) -> group(function(){
 Route::controller(commentsController::class) -> group(function(){
     Route::post('post/savecomments','savecomments') -> name('post.savecomments');
     Route::delete('post/{comment}', 'destroycomments') ->name('comments.destroycomments');
+    Route::get('post/ShowPost/{comments}/editcomments',  'editcomments')->name('post.editcomments');
+    Route::put('post/ShowPost/{comments}',  'updatecomments')->name('post.updatecomments');
 });

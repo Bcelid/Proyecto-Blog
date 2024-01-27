@@ -21,4 +21,13 @@ class commentsController extends Controller
         Comments::where('comments_id',$comments) -> first() -> delete();
         return redirect() -> route('post.showPost',$coment -> post_id);
     }
+    public function editcomments($comments){
+        $comments = Comments::where('comments_id',$comments) -> first();
+        return view('comments.editcomments',compact('comments'));
+    }
+    public function updatecomments(comments $comments, Request $request){
+        $comments -> contenido = $request -> contenidocomments;
+        $comments -> save();
+        return redirect() -> route('post.showPost',$comments -> post_id);
+    }
 }

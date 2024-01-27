@@ -23,7 +23,7 @@
             @endauth
         </div>
     </header>
-    @unless(request()->is('post/createPost'))
+    @unless(request()->is('post/createPost') || request()->is('/'))
     <div class="flex items-center justify-start pl-5 pt-5">
         <a href="{{ route('post.createPost') }}" class="bg-blue-500 text-white py-2 px-4 rounded-full flex items-center hover:bg-blue-700">
             <svg class="h-7 w-7 text-white-500 mr-2"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,6 +42,5 @@
     <footer class="bg-gray-800 text-white py-4 text-center">
         <p>©2024 Byron Celi Posteate.</p>
     </footer>
-    
 </body>
 </html>

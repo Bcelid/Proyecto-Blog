@@ -22,7 +22,8 @@
             <input type="text" name="autor" id="autor" value="{{ Auth::user()->name }}" readonly class="mt-1 p-2 border rounded w-full">
         </div>
         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-700">Guardar</button>
+        <button type="button" onclick="window.history.back()" class="bg-red-500 text-white py-2 px-4 rounded-full hover:bg-red-700">Cancelar</button>
     </form>
 </div>
 
-@endsection
+@endsection  

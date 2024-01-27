@@ -8,6 +8,7 @@
         </a>
         <p class="mb-4 text-gray-500 text-sm mt-2">
             Publicado el {{ \Carbon\Carbon::parse($post->created_at)->locale('es')->isoFormat('LLLL') }}
+            - Ultima modificacion el {{ \Carbon\Carbon::parse($post->updated_at)->locale('es')->isoFormat('LLLL') }}
             <br>
         </p>
         <p class="mt-2 mb-3 text-sm sm:text-base font-normal text-gray-700 dark:text-gray-400">{{ \Illuminate\Support\Str::limit(strip_tags($post->contenido), 150, '...') }}</p>

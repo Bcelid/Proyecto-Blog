@@ -10,7 +10,7 @@ use App\Models\User;
 class postcontroller extends Controller
 {
     public function home(){
-        $contenido = post::All();
+        $contenido = Post::orderBy('updated_at', 'desc')->get();
         return view('post.home', compact('contenido'));
     }
     public function create(){
@@ -33,6 +33,7 @@ class postcontroller extends Controller
         ->join('users', 'comments.users_id', '=', 'users.id') 
         ->select('comments.comments_id', 
         'users.name as nombre_usuario','users.id as id_usuarios', 'comments.contenido', 'comments.created_at') 
+        -> orderBy('comments_id', 'desc')
         -> get();
         return view('post.showPost',compact('post','comentario'));
     }
@@ -47,19 +48,7 @@ class postcontroller extends Controller
         $post_id -> titulo = $request -> titulo;
         $post_id -> contenido = $request -> contenido;
         $post_id -> save();
-
-        $post = post::where('post_id',$post_id -> post_id)
-        -> join('users','posts.users_id', '=','users.id')
-        -> select('posts.post_id as post_id','posts.titulo as titulo','posts.contenido as contenido','posts.created_at as created_at','users.id as users_id','users.name as name')
-        -> first();
-
-        $comentario = Comments::where('post_id', $post_id -> post_id) 
-        ->join('users', 'comments.users_id', '=', 'users.id') 
-        ->select('comments.comments_id', 
-        'users.name as nombre_usuario','users.id as id_usuarios', 'comments.contenido', 'comments.created_at') 
-        -> get();
-
-        return view('post.showPost',compact('post','comentario'));
+        return redirect() -> route('post.showPost',$post_id -> post_id);
     }
     public function destroyPost(post $post){
         $post->comments()->delete(); // Elimina los comentarios asociados al post
