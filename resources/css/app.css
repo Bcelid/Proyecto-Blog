@@ -1,1 +1,23 @@
+/* Agrega estas reglas CSS en tu hoja de estilos o en línea según sea necesario */
+.transition-opacity {
+    transition-property: opacity;
+}
+.ease-in-out {
+    transition-timing-function: ease-in-out;
+}
+/* Esto mantendrá la altura de la alerta incluso después de la opacidad llegue a 0 */
+#successAlert_newPost[style*="opacity: 0"],
+#errorAlert_newPost[style*="opacity: 0"] {
+    height: 0;
+}
 
+/* Esto mantendrá la altura de la alerta incluso después de la opacidad llegue a 0 */
+#successAlert_editPost[style*="opacity: 0"],
+#errorAlert_editPost[style*="opacity: 0"] {
+    height: 0;
+}
+/* Esto mantendrá la altura de la alerta incluso después de la opacidad llegue a 0 */
+#successAlert_deletePost[style*="opacity: 0"],
+#errorAlert_deletePost[style*="opacity: 0"] {
+    height: 0;
+}

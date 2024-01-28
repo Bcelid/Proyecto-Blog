@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comments;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class postcontroller extends Controller
 {
@@ -20,14 +21,21 @@ class postcontroller extends Controller
         return view('post.createPost');
     }
     //funcion para guardar el post mediante los datos enviados por el request
-    public function savepost(Request $request){
-        $post = new post();
-        $post -> titulo = $request -> titulo;
-        $post -> contenido = $request -> contenido;
-        $post -> users_id = $request -> id;
-        $post -> save();
-        //redirigimos al home
-        return redirect() -> route('home');
+    public function savepost(Request $request)
+    {
+        $post = new Post();
+        $post->titulo = $request->titulo;
+        $post->contenido = $request->contenido;
+        $post->users_id = $request->id;
+        if ($post->save()) {
+            // Post creado correctamente
+            Session::flash('new_post', '¡Post creado correctamente!');
+        } else {
+            // Error al crear el post
+            Session::flash('error_newpost', 'Error al crear el post. Inténtelo de nuevo.');
+        }
+        // Redirigimos al home
+        return redirect()->route('home');
     }
     //funcion para mostrar un post especifico con sus comentarios
     public function showPost($post_id){
@@ -60,12 +68,26 @@ class postcontroller extends Controller
         $post_id -> titulo = $request -> titulo;
         $post_id -> contenido = $request -> contenido;
         $post_id -> save();
+        if ($post_id->save()) {
+            // Post editado correctamente
+            Session::flash('edit_post', '¡Post Editado correctamente!');
+        } else {
+            // Error al editar el post
+            Session::flash('error_editpost', 'Error al editar el post. Inténtelo de nuevo.');
+        }
         return redirect() -> route('post.showPost',$post_id -> post_id);
     }
     //Eliminamos un post y retornamos al home
     public function destroyPost(post $post){
         $post->comments()->delete(); // Elimina los comentarios asociados al post
-        $post->delete(); // Elimina el post
+        // Elimina el post
+        if ($post->delete()) {
+            // Post creado correctamente
+            Session::flash('delete_post', '¡Post Eliminado correctamente!');
+        } else {
+            // Error al crear el post
+            Session::flash('error_deletepost', 'Error al eliminar el post. Inténtelo de nuevo.');
+        }
         return redirect() -> route('home');
     }
     

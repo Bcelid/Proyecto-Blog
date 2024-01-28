@@ -13,19 +13,20 @@ class homeController extends Controller
         return view('index');
     }
     //Funcion para login, validamos los campos de email y password para autenticar
-    public function login(){
-        $credential = request()-> only('email','password');
-        //Consultamos si las credenciales estan correctas
-        if(Auth::attempt($credential)){
-            //Para evitar la vulnerabilidad session fixation
+    public function login()
+    {
+        $credential = request()->only('email', 'password');
+        // Consultamos si las credenciales están correctas
+        if (Auth::attempt($credential)) {
+            // Para evitar la vulnerabilidad session fixation
             request()->session()->regenerate();
-            //una vez abierta la session redirigimos al usuario
+            // Una vez abierta la sesión, redirigimos al usuario con datos adicionales
             return redirect('home');
-        }else{
-            //en caso de ser incorrectas redirigimos al inicio
-            return redirect('index');
+        } else {
+            // En caso de ser incorrectas, redirigimos al inicio con un mensaje de error
+            return redirect('/')->with('error', 'Credenciales incorrectas. Inténtelo de nuevo.');
         }
-    }    
+    }   
     //funcion para cerrar sesion
     public function logout(Request $request){
         Auth::logout();

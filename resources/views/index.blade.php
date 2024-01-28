@@ -19,5 +19,11 @@
             <input type="hidden" name="password" value="password">
             <button class="bg-yellow-500 text-white font-bold py-6 px-16 sm:py-10 sm:px-32 text-lg sm:text-xl rounded-full hover:bg-yellow-700" type="submit">Carlos Diaz</button>
         </form>
+        <!-- Mostramos error si hay algun error al iniciar la sesion -->
+        @if (session('error'))
+            <div class="alert alert-success">
+                {{ session('error') }}
+            </div>
+        @endif
     </div>
 @endsection

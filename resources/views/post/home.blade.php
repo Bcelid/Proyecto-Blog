@@ -1,6 +1,42 @@
 @extends('layout.layout')
 @section('title', 'Blog')
 @section('content')
+    <!-- Nuevo post, alertas-->
+    @if(session('new_post'))
+    <div id="successAlert_newPost" class="transition-opacity duration-500 ease-in-out mt-4 w-full max-w-4xl bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto" role="alert">
+            <strong class="font-bold">¡Éxito!</strong>
+            <span class="block sm:inline">{{ session('new_post') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 ml-4">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.468-.469-1.228 0-1.697l2.848-3.25-2.849-3.25c-.469-.469-.469-1.229 0-1.697s1.228-.469 1.697 0L10 8.182l2.651-3.031c.469-.468 1.229-.468 1.697 0 .469.469.469 1.229 0 1.697L11.697 10l2.651 3.031c.469.468.469 1.228 0 1.697z"/></svg>
+            </span>
+        </div>
+    @elseif(session('error_newpost'))
+    <div id="errorAlert_newPost" class="transition-opacity duration-500 ease-in-out mt-4 w-full max-w-4xl bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto" role="alert">
+            <strong class="font-bold">¡Error!</strong>
+            <span class="block sm:inline">{{ session('error_newpost') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 ml-4">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.468-.469-1.228 0-1.697l2.848-3.25-2.849-3.25c-.469-.469-.469-1.229 0-1.697s1.228-.469 1.697 0L10 8.182l2.651-3.031c.469-.468 1.229-.468 1.697 0 .469.469.469 1.229 0 1.697L11.697 10l2.651 3.031c.469.468.469 1.228 0 1.697z"/></svg>
+            </span>
+        </div>
+    @endif
+    <!-- Alertas de eliminar el post -->
+    @if(session('delete_post'))
+    <div id="successAlert_deletePost" class="transition-opacity duration-500 ease-in-out mt-4 w-full max-w-4xl bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto" role="alert">
+            <strong class="font-bold">¡Éxito!</strong>
+            <span class="block sm:inline">{{ session('delete_post') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 ml-4">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.468-.469-1.228 0-1.697l2.848-3.25-2.849-3.25c-.469-.469-.469-1.229 0-1.697s1.228-.469 1.697 0L10 8.182l2.651-3.031c.469-.468 1.229-.468 1.697 0 .469.469.469 1.229 0 1.697L11.697 10l2.651 3.031c.469.468.469 1.228 0 1.697z"/></svg>
+            </span>
+        </div>
+    @elseif(session('error_deletepost'))
+    <div id="errorAlert_deletePost" class="transition-opacity duration-500 ease-in-out mt-4 w-full max-w-4xl bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto" role="alert">
+            <strong class="font-bold">¡Error!</strong>
+            <span class="block sm:inline">{{ session('error_deletepost') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3 ml-4">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.468-.469-1.228 0-1.697l2.848-3.25-2.849-3.25c-.469-.469-.469-1.229 0-1.697s1.228-.469 1.697 0L10 8.182l2.651-3.031c.469-.468 1.229-.468 1.697 0 .469.469.469 1.229 0 1.697L11.697 10l2.651 3.031c.469.468.469 1.228 0 1.697z"/></svg>
+            </span>
+        </div>
+    @endif
     <!-- Iteramos sobre cada post en la variable $contenido -->
     @foreach ($contenido as $post)
         <div class="mt-4 w-full max-w-4xl p-5 bg-white border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700 relative mx-auto">
