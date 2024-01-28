@@ -11,5 +11,7 @@ Pasos para ejecutar la aplicacion
     npm install node
 4.- configura tu archivo env
 5.- ejecuta las migraciones
+7.- genera el key
+	php artisan key:generate
 6.- corre el npm 
     npm run dev
